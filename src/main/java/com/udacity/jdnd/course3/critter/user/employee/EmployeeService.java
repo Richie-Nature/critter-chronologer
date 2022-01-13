@@ -1,7 +1,5 @@
 package com.udacity.jdnd.course3.critter.user.employee;
 
-import com.udacity.jdnd.course3.critter.schedule.Schedule;
-import com.udacity.jdnd.course3.critter.user.skill.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +18,9 @@ public class EmployeeService {
        return employeeRepository.save(employee);
    }
 
-   public List<Employee> findByServiceAndTime(EmployeeSkill skill, DayOfWeek dayOfWeek) {
-       return employeeRepository.findAllBySkillAndAvailability(skill, dayOfWeek);
-   }
+//   public List<Employee> findByServiceAndTime(EmployeeSkill skill, DayOfWeek dayOfWeek) {
+//       return employeeRepository.findAllBySkillAndAvailability(skill, dayOfWeek);
+//   }
 
    public List<Employee> findAll() {
        return (List<Employee>) employeeRepository.findAll();
@@ -31,5 +29,20 @@ public class EmployeeService {
    public Employee findById(Long id) {
        return employeeRepository.findById(id).
                orElseThrow(UnsupportedOperationException::new);
+   }
+
+   public Employee updateAvailability(Set<DayOfWeek> days, Long id) {
+       return employeeRepository.findById(id).map(employee -> {
+                 employee.setDaysAvailable(days);
+                 return employeeRepository.save(employee);
+               })
+               .orElseThrow(UnsupportedOperationException::new);//todo custom exception
+   }
+
+   public void delete(Long id) {
+       employeeRepository.findById(id).map(employee -> {
+           employeeRepository.delete(employee);
+           return employee;
+       }).orElseThrow(UnsupportedOperationException::new);
    }
 }

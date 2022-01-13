@@ -1,9 +1,6 @@
 package com.udacity.jdnd.course3.critter.user;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @MappedSuperclass
 public abstract class User {
@@ -12,7 +9,8 @@ public abstract class User {
     private long Id;
 
     private String name;
-    private String phone;
+    @Column(name = "phone")
+    private String phoneNumber;
 
     public long getId() {
         return Id;
@@ -30,11 +28,11 @@ public abstract class User {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

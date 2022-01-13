@@ -27,9 +27,9 @@ public class ScheduleService {
         return scheduleRepository.findAllByPetContaining(pet);
     }
 
-    public List<Schedule> findByCustomer(Customer customer) {
-        return scheduleRepository.findAllByCustomerContaining(customer);
-    }
+//    public List<Schedule> findByCustomer(Customer customer) {
+//        return scheduleRepository.findAllByCustomerContaining(customer);
+//    }
 
     public Schedule find(Long id) {
         return scheduleRepository.findById(id).

@@ -14,11 +14,11 @@ public class Employee extends User {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "skill", cascade = {CascadeType.ALL})
     private Set<Skill> skills;
 
-    @ManyToMany(mappedBy = "employee",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "employee",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Schedule> schedules;
 
     @ElementCollection
-    private Set<DayOfWeek> availability;
+    private Set<DayOfWeek> daysAvailable;
 
     public Set<Skill> getSkills() {
         return skills;
@@ -36,11 +36,11 @@ public class Employee extends User {
         this.schedules = schedules;
     }
 
-    public Set<DayOfWeek> getAvailability() {
-        return availability;
+    public Set<DayOfWeek> getDaysAvailable() {
+        return daysAvailable;
     }
 
-    public void setAvailability(Set<DayOfWeek> availability) {
-        this.availability = availability;
+    public void setDaysAvailable(Set<DayOfWeek> daysAvailable) {
+        this.daysAvailable = daysAvailable;
     }
 }

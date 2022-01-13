@@ -12,5 +12,5 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
 
     List<Schedule> findAllByEmployeeContaining(Employee employee);
     List<Schedule> findAllByPetContaining(Pet pet);
-    List<Schedule> findAllByCustomerContaining(Customer customer);
+//    List<Schedule> findAllByCustomerContaining(Customer customer);
 }

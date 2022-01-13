@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
-    List<Employee> findAllBySkillAndAvailability(EmployeeSkill skill, DayOfWeek dayOfWeek);
+//    List<Employee> findAllBySkillAndAvailability(EmployeeSkill skill, DayOfWeek dayOfWeek);
 
 }
