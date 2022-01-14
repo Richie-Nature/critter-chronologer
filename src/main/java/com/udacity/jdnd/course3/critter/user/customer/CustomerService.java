@@ -1,6 +1,7 @@
 package com.udacity.jdnd.course3.critter.user.customer;
 
 import com.udacity.jdnd.course3.critter.pet.Pet;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -9,6 +10,8 @@ import java.util.List;
 @Transactional
 @Service
 public class CustomerService {
+
+    @Autowired
     private CustomerRepository customerRepository;
 
     public Customer create(Customer customer) {

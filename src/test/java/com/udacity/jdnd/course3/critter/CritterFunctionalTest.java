@@ -2,6 +2,7 @@ package com.udacity.jdnd.course3.critter;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.udacity.jdnd.course3.critter.config.DatasourceConfig;
 import com.udacity.jdnd.course3.critter.pet.PetController;
 import com.udacity.jdnd.course3.critter.pet.PetDTO;
 import com.udacity.jdnd.course3.critter.pet.PetType;
@@ -14,8 +15,13 @@ import com.udacity.jdnd.course3.critter.user.employee.EmployeeRequestDTO;
 import com.udacity.jdnd.course3.critter.user.employee.EmployeeSkill;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.DayOfWeek;
@@ -33,6 +39,7 @@ import java.util.stream.IntStream;
  *
  * These tests should all pass once the project is complete.
  */
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @Transactional
 @SpringBootTest(classes = CritterApplication.class)
 public class CritterFunctionalTest {
@@ -45,6 +52,9 @@ public class CritterFunctionalTest {
 
     @Autowired
     private ScheduleController scheduleController;
+
+//    @MockBean
+//    private DatasourceConfig datasourceConfig;
 
     @Test
     public void testCreateCustomer(){
