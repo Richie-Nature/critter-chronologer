@@ -39,7 +39,6 @@ import java.util.stream.IntStream;
  *
  * These tests should all pass once the project is complete.
  */
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @Transactional
 @SpringBootTest(classes = CritterApplication.class)
 public class CritterFunctionalTest {
@@ -52,9 +51,6 @@ public class CritterFunctionalTest {
 
     @Autowired
     private ScheduleController scheduleController;
-
-//    @MockBean
-//    private DatasourceConfig datasourceConfig;
 
     @Test
     public void testCreateCustomer(){

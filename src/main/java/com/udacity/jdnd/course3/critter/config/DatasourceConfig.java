@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration
 public class DatasourceConfig {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/critter?serverTimezone=UTC";
 
