@@ -12,6 +12,7 @@ import java.util.List;
 @Transactional
 @Service
 public class ScheduleService {
+
     @Autowired
     private ScheduleRepository scheduleRepository;
 

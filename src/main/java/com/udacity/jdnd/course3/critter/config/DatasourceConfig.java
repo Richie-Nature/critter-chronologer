@@ -8,12 +8,13 @@ import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 
-//@Configuration
+@Configuration
 public class DatasourceConfig {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/critter?serverTimezone=UTC";
 
     @Bean
-    @Primary
+//    @Primary taking away primary to prevent this config from always been loaded
+//    (especially needed to prevent config from being loaded when running tests)
     @ConfigurationProperties(prefix = "critter.datasource")
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();

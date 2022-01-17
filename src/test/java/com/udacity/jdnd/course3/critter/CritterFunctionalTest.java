@@ -3,6 +3,7 @@ package com.udacity.jdnd.course3.critter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.udacity.jdnd.course3.critter.config.DatasourceConfig;
+import com.udacity.jdnd.course3.critter.config.H2DatabaseConfig;
 import com.udacity.jdnd.course3.critter.pet.PetController;
 import com.udacity.jdnd.course3.critter.pet.PetDTO;
 import com.udacity.jdnd.course3.critter.pet.PetType;
@@ -40,7 +41,7 @@ import java.util.stream.IntStream;
  * These tests should all pass once the project is complete.
  */
 @Transactional
-@SpringBootTest(classes = CritterApplication.class)
+@SpringBootTest(classes = {CritterApplication.class, H2DatabaseConfig.class})
 public class CritterFunctionalTest {
 
     @Autowired
