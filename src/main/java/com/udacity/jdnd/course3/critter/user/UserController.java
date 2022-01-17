@@ -69,8 +69,10 @@ public class UserController {
 
     @GetMapping("/employee/availability")
     public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
-        return Collections.singletonList(new EmployeeDTO());
-//        return employeeService.findByServiceAndTime(employeeDTO.getSkills(), employeeDTO.getDate().getDayOfWeek());
+//        return Collections.singletonList(new EmployeeDTO());
+        return employeeService.findByServiceAndTime(employeeDTO.getSkills(),
+                employeeDTO.getDate())
+                .stream().map(employee -> convertEntityToDto(employee)).collect(Collectors.toList());
     }
 
     private static EmployeeDTO convertEntityToDto(Employee employee) {

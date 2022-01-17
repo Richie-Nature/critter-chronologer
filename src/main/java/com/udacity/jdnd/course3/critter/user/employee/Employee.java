@@ -11,8 +11,8 @@ import java.util.Set;
 
 @Entity
 public class Employee extends User {
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "skill", cascade = {CascadeType.ALL})
-    private Set<Skill> skills;
+    @ElementCollection
+    private Set<EmployeeSkill> skills;
 
     @OneToMany(mappedBy = "employee",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Schedule> schedules;
@@ -20,11 +20,11 @@ public class Employee extends User {
     @ElementCollection
     private Set<DayOfWeek> daysAvailable;
 
-    public Set<Skill> getSkills() {
+    public Set<EmployeeSkill> getSkills() {
         return skills;
     }
 
-    public void setSkills(Set<Skill> skills) {
+    public void setSkills(Set<EmployeeSkill> skills) {
         this.skills = skills;
     }
 
