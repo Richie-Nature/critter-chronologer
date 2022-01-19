@@ -19,7 +19,7 @@ public class CustomerService {
     }
 
     public Customer findByPet(Long petId) {
-        return customerRepository.findByPetsContaining(petId);
+        return customerRepository.findByPetId(petId);
     }
 
     public List<Customer> findAll() {
