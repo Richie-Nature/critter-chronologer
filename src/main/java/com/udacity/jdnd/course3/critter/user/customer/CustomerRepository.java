@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
-    @Query("SELECT DISTINCT c FROM Customer c LEFT JOIN c.pets p WHERE p.id = :petId")
+    @Query("SELECT c FROM Customer c LEFT JOIN Pet p WHERE p.id = :petId")
     Customer findByPetId(Long petId);
 }

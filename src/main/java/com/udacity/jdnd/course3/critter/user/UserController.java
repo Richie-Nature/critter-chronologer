@@ -1,6 +1,7 @@
 package com.udacity.jdnd.course3.critter.user;
 
 import com.udacity.jdnd.course3.critter.pet.Pet;
+import com.udacity.jdnd.course3.critter.pet.PetService;
 import com.udacity.jdnd.course3.critter.user.customer.Customer;
 import com.udacity.jdnd.course3.critter.user.customer.CustomerDTO;
 import com.udacity.jdnd.course3.critter.user.customer.CustomerService;
@@ -36,10 +37,15 @@ public class UserController {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private PetService petService;
+
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO) {
       Customer customer = customerService.create(convertDtoToEntity(customerDTO));
       CustomerDTO cDto =  convertEntityToDto(customer);
+//      cDto.setPetIds(customer.getPets().stream().map(Pet::getId)
+//              .collect(Collectors.toList()));
       return cDto;
     }
 
@@ -56,7 +62,8 @@ public class UserController {
 
     @GetMapping("/customer/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId){
-        Customer customer = customerService.findByPet(petId);
+       Customer customer = petService.find(petId).getCustomer();
+//        Customer customer = customerService.findByPet(petId);
        CustomerDTO cd =  convertEntityToDto(customer);
        cd.setPetIds(getPetIds(customer));
        return cd;

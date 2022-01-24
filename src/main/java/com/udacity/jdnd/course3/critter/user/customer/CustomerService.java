@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Transactional
@@ -36,6 +38,14 @@ public class CustomerService {
                     c.setPets(pets);
                     return customerRepository.save(c);
                 }).orElseThrow(UnsupportedOperationException::new); //todo custom exception
+    }
+
+    public Customer addPet(Pet pet, Long customerId) {
+        return customerRepository.findById(customerId).map( c -> {
+//            c.getPets().add(pet);
+            c.setPets(Collections.singletonList(pet));
+            return customerRepository.save(c);
+        }).orElseThrow(UnsupportedOperationException::new);
     }
 
     public void delete(Long id) {

@@ -27,13 +27,21 @@ public class PetController {
         Pet pet = convertDtoToEntity(petDTO);
         try {
             Customer owner = customerService.find(petDTO.getOwnerId());
-            if(owner != null) {
-                pet.setCustomer(owner);
+            Pet newPet = petService.create(pet);
+            newPet.setCustomer(owner);
+
+            PetDTO pd = convertEntityToDto(newPet);
+            pd.setOwnerId(owner.getId());
+
+            try {
+                customerService.addPet(newPet, owner.getId());
+            } catch (Exception e) {
+                System.out.println("Could not add pet to customer"); //todo Exception handling
             }
+            return pd;
         }catch (UnsupportedOperationException e) {
             return null;
         }
-        return convertEntityToDto(petService.create(pet));
     }
 
     @GetMapping("/{petId}")
@@ -53,7 +61,14 @@ public class PetController {
 
     @GetMapping("/owner/{ownerId}")
     public List<PetDTO> getPetsByOwner(@PathVariable long ownerId) {
-        return petService.findByOwner(ownerId).stream()
+        Customer customer;
+        try {
+            customer = customerService.find(ownerId);
+        } catch (UnsupportedOperationException e) {
+            return null;
+        }
+
+        return petService.findByOwner(customer).stream()
                 .map(pet -> getPetDto(pet))
                 .collect(Collectors.toList());
     }
