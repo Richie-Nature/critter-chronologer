@@ -20,34 +20,36 @@ public class Schedule {
     @ElementCollection
     private Set<EmployeeSkill> activities;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+//    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinTable(name = "employee_schedule",
 //            joinColumns = @JoinColumn(name = "schedule_id", referencedColumnName = "id"),
 //            inverseJoinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id")
 //    )
-    private Employee employee;
+    @ManyToMany
+    private List<Employee> employees;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+//    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinTable(name = "pet_schedule",
 //            joinColumns = @JoinColumn(name = "schedule_id", referencedColumnName = "id"),
 //            inverseJoinColumns = @JoinColumn(name = "pet_id", referencedColumnName = "id")
 //    )
-    private Pet pet;
+    @ManyToMany
+    private List<Pet> pets;
 
-    public Pet getPet() {
-        return pet;
+    public List<Pet> getPets() {
+        return pets;
     }
 
-    public void setPet(Pet pet) {
-        this.pet = pet;
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 
     public Long getId() {

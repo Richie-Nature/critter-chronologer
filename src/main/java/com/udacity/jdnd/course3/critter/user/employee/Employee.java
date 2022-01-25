@@ -2,7 +2,6 @@ package com.udacity.jdnd.course3.critter.user.employee;
 
 import com.udacity.jdnd.course3.critter.schedule.Schedule;
 import com.udacity.jdnd.course3.critter.user.User;
-import com.udacity.jdnd.course3.critter.user.skill.Skill;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
@@ -14,7 +13,7 @@ public class Employee extends User {
     @ElementCollection
     private Set<EmployeeSkill> skills;
 
-    @OneToMany(mappedBy = "employee",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "employees",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Schedule> schedules;
 
     @ElementCollection

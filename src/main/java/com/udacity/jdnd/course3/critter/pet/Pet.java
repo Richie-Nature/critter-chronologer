@@ -23,7 +23,7 @@ public class Pet {
     private LocalDate birthDate;
     private String notes;
 
-    @OneToMany(mappedBy = "pet",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "pets",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Schedule> schedules;
 
     public Long getId() {

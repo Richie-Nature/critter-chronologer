@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
 @Transactional
@@ -20,12 +21,12 @@ public class ScheduleService {
         return scheduleRepository.save(schedule);
     }
 
-    public List<Schedule> findByEmployee(Employee employee) {
-        return scheduleRepository.findAllByEmployeeContaining(employee);
+    public List<Schedule> findByEmployee(Long employeeId) {
+        return scheduleRepository.findAllByEmployee(employeeId);
     }
 
-    public List<Schedule> findByPet(Pet pet) {
-        return scheduleRepository.findAllByPetContaining(pet);
+    public List<Schedule> findByPet(Long petId) {
+        return scheduleRepository.findAllByPet(petId);
     }
 
 //    public List<Schedule> findByCustomer(Customer customer) {

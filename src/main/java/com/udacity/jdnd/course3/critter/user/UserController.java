@@ -75,7 +75,7 @@ public class UserController {
         return convertEntityToDto(employee);
     }
 
-    @PostMapping("/employee/{employeeId}")
+    @GetMapping("/employee/{employeeId}")
     public EmployeeDTO getEmployee(@PathVariable long employeeId) {
         return convertEntityToDto(employeeService.findById(employeeId));
     }
