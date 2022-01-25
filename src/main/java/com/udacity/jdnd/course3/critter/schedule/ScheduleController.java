@@ -36,7 +36,7 @@ public class ScheduleController {
         schedule.setPets(pets);
         schedule.setEmployees(employees);
 
-        return convertEntityToDto(scheduleService.create(schedule));
+        return getScheduleDTO(scheduleService.create(schedule));
     }
 
     @GetMapping
@@ -62,7 +62,9 @@ public class ScheduleController {
 
     @GetMapping("/customer/{customerId}")
     public List<ScheduleDTO> getScheduleForCustomer(@PathVariable long customerId) {
-        throw new UnsupportedOperationException();
+        return scheduleService.findByCustomer(customerId).stream()
+                .map(schedule -> getScheduleDTO(schedule))
+                .collect(Collectors.toList());
     }
 
     private <T> List<T> getEntityFromId(List<Long> ids, T entity) {

@@ -11,11 +11,13 @@ import java.util.List;
 @Repository
 public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
 
-    @Query("SELECT s FROM Schedule s LEFT JOIN Employee e WHERE e.id = :employeeId")
-    List<Schedule> findAllByEmployee(Long employeeId);
+    //    @Query("SELECT s FROM Schedule s LEFT JOIN Pet p WHERE p.id = :petId")
+    List<Schedule> findByPets_Id(Long petId);
 
-    @Query("SELECT s FROM Schedule s LEFT JOIN Pet p WHERE p.id = :petId")
-    List<Schedule> findAllByPet(Long petId);
+//    @Query("SELECT s FROM Schedule s LEFT JOIN Employee e WHERE e.id = :employeeId")
+    List<Schedule> findByEmployees_Id(Long employeeId);
 
-//    List<Schedule> findAllByCustomerContaining(Customer customer);
+
+//    @Query("SELECT s FROM Schedule s LEFT JOIN Pet p WHERE p.customer.id = :customerId")
+    List<Schedule> findByPets_CustomerId(Long customerId);
 }

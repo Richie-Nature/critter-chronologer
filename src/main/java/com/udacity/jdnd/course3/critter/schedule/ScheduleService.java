@@ -1,13 +1,9 @@
 package com.udacity.jdnd.course3.critter.schedule;
 
-import com.udacity.jdnd.course3.critter.pet.Pet;
-import com.udacity.jdnd.course3.critter.user.customer.Customer;
-import com.udacity.jdnd.course3.critter.user.employee.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 
 @Transactional
@@ -22,16 +18,16 @@ public class ScheduleService {
     }
 
     public List<Schedule> findByEmployee(Long employeeId) {
-        return scheduleRepository.findAllByEmployee(employeeId);
+        return scheduleRepository.findByEmployees_Id(employeeId);
     }
 
     public List<Schedule> findByPet(Long petId) {
-        return scheduleRepository.findAllByPet(petId);
+        return scheduleRepository.findByPets_Id(petId);
     }
 
-//    public List<Schedule> findByCustomer(Customer customer) {
-//        return scheduleRepository.findAllByCustomerContaining(customer);
-//    }
+    public List<Schedule> findByCustomer(Long customerId) {
+        return scheduleRepository.findByPets_CustomerId(customerId);
+    }
 
     public Schedule find(Long id) {
         return scheduleRepository.findById(id).
