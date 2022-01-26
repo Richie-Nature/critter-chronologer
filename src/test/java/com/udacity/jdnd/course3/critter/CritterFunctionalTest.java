@@ -93,9 +93,9 @@ public class CritterFunctionalTest {
         Assertions.assertEquals(newPet.getName(), pets.get(0).getName());
 
         //check to make sure customer now also contains pet
-//        CustomerDTO retrievedCustomer = userController.getAllCustomers().get(0);
-//        Assertions.assertTrue(retrievedCustomer.getPetIds() != null && retrievedCustomer.getPetIds().size() > 0);
-//        Assertions.assertEquals(retrievedCustomer.getPetIds().get(0), retrievedPet.getId());
+       CustomerDTO retrievedCustomer = userController.getAllCustomers().get(0);
+     Assertions.assertTrue(retrievedCustomer.getPetIds() != null && retrievedCustomer.getPetIds().size() > 0);
+      Assertions.assertEquals(retrievedCustomer.getPetIds().get(0), retrievedPet.getId());
     }
 
     @Test
@@ -179,7 +179,7 @@ public class CritterFunctionalTest {
 
         Set<Long> eIds2 = userController.findEmployeesForService(er2).stream().map(EmployeeDTO::getId).collect(Collectors.toSet());
         Set<Long> eIds2expected = Sets.newHashSet(emp3n.getId());
-//        Assertions.assertEquals(eIds2, eIds2expected);
+       Assertions.assertEquals(eIds2, eIds2expected);
     }
 
     @Test
