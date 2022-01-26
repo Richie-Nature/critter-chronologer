@@ -3,6 +3,8 @@ package com.udacity.jdnd.course3.critter.schedule;
 import com.udacity.jdnd.course3.critter.pet.Pet;
 import com.udacity.jdnd.course3.critter.user.employee.Employee;
 import com.udacity.jdnd.course3.critter.user.employee.EmployeeSkill;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,6 +19,7 @@ public class Schedule {
 
     private LocalDate date;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ElementCollection
     private Set<EmployeeSkill> activities;
 
@@ -25,7 +28,7 @@ public class Schedule {
 //            joinColumns = @JoinColumn(name = "schedule_id", referencedColumnName = "id"),
 //            inverseJoinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id")
 //    )
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Employee> employees;
 
 //    @ManyToOne(fetch = FetchType.EAGER)
@@ -33,6 +36,7 @@ public class Schedule {
 //            joinColumns = @JoinColumn(name = "schedule_id", referencedColumnName = "id"),
 //            inverseJoinColumns = @JoinColumn(name = "pet_id", referencedColumnName = "id")
 //    )
+@LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany
     private List<Pet> pets;
 

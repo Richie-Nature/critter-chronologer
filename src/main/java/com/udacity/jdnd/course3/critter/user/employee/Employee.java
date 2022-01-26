@@ -10,13 +10,13 @@ import java.util.Set;
 
 @Entity
 public class Employee extends User {
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<EmployeeSkill> skills;
 
     @ManyToMany(mappedBy = "employees",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Schedule> schedules;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<DayOfWeek> daysAvailable;
 
     public Set<EmployeeSkill> getSkills() {

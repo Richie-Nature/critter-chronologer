@@ -43,7 +43,14 @@ public class CustomerService {
     public Customer addPet(Pet pet, Long customerId) {
         return customerRepository.findById(customerId).map( c -> {
 //            c.getPets().add(pet);
-            c.setPets(Collections.singletonList(pet));
+//            c.setPets(c.getPets());
+            if(c.getPets() != null) {
+                c.getPets().add(pet);
+                c.setPets(c.getPets());
+            }else {
+                c.setPets(Collections.singletonList(pet));
+            }
+
             return customerRepository.save(c);
         }).orElseThrow(UnsupportedOperationException::new);
     }

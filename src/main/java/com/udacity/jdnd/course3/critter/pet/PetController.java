@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * Handles web requests related to Pets.
  */
 @RestController
-@RequestMapping("/pet")
+@RequestMapping("/pets")
 public class PetController {
     @Autowired
     private PetService petService;
@@ -27,8 +27,8 @@ public class PetController {
         Pet pet = convertDtoToEntity(petDTO);
         try {
             Customer owner = customerService.find(petDTO.getOwnerId());
+            pet.setCustomer(owner);
             Pet newPet = petService.create(pet);
-            newPet.setCustomer(owner);
 
             PetDTO pd = convertEntityToDto(newPet);
             pd.setOwnerId(owner.getId());
